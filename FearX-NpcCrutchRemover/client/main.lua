@@ -125,10 +125,6 @@ local function AttemptCrutchRemoval(npc)
     local price = Config.ChargeMoney and Config.RemovalPrice or 0
 
     if Config.ChargeMoney and price > 0 then
-        if GetResourceState('ox_lib') ~= 'started' then
-            exports['s6la_bridge']:notify('ox_lib is required for this feature', 'error')
-            return
-        end
         
         local canAfford = lib.callback.await('fearx-crutchremover:canAfford', false, price)
         
@@ -255,4 +251,5 @@ AddEventHandler('onResourceStop', function(resourceName)
     RemoveLocationBlips()
     DeleteNPCs()
 end)
+
 
